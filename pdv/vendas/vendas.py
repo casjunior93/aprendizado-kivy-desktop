@@ -4,7 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 class VendasWindow(BoxLayout):
     #Janela do App
     def __init__(self, **kwargs):
-        super().__initi__(**kwargs)
+        super().__init__(**kwargs)
 
 class VendasApp(App):
     #Monta a aplicação
