@@ -10,18 +10,44 @@
             pos:self.pos    
     BoxLayout:
         size_hint_y: 0.1
+        spacing: '.5'
+
         Label:
+            id: lbl_bemvindo
             size_hint_x: 0.3
             text: "Bem-vindo, Carlos!"
+            color: hex('#FFD700')
+
+        GridLayout:
+            size_hint_x: 0.25
+            rows: 2
+            cols: 2
+            Label:
+                text: "Data"
+                color: hex('#FFD700')
+            Label:
+                id: lbl_data
+                color: hex('#FFD700')
+            Label:
+                text: 'Hora'
+                color: hex('#FFD700')
+            Label:
+                id: lbl_hora
+                color: hex('#FFD700')
         Label:
-            size_hint_x: 0.4
-            text: "Data de hoje"
+            size_hint_x: 0.2
         Button:
+            id: btn_admin
             size_hint_x: 0.15
             text: "Administrador"
+            color: hex('#FFD700')
+            on_release: root.admin()
         Button:
+            id: btn_sair
             size_hint_x: 0.15
             text: "Sair"
+            color: hex('#FF0000')
+            on_release: root.sair()
 
     BoxLayout:
         orientation: 'vertical'
