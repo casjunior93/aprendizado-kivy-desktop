@@ -2,7 +2,7 @@
 
 <Btn@Button>:
     background_color_normal: ''
-    background_color: hex("#FFFF00")
+    background_color: hex("#000000")
 
 <VendasWindow>:
     orientation: 'vertical'
@@ -12,6 +12,8 @@
         Rectangle:
             size:self.size
             pos:self.pos    
+    
+    #Menu
     BoxLayout:
         size_hint_y: 0.1
         spacing: '.5'
@@ -20,7 +22,7 @@
             id: lbl_bemvindo
             size_hint_x: 0.3
             text: "Bem-vindo, Carlos!"
-            color: hex('#FFD700')
+            color: hex('#FFFFFF')
 
         GridLayout:
             size_hint_x: 0.25
@@ -28,43 +30,67 @@
             cols: 2
             Label:
                 text: "Data"
-                color: hex('#FFD700')
+                color: hex('#FFFFFF')
             Label:
                 id: lbl_data
-                color: hex('#FFD700')
+                color: hex('#FFFFFF')
             Label:
                 text: 'Hora'
-                color: hex('#FFD700')
+                color: hex('#FFFFFF')
             Label:
                 id: lbl_hora
-                color: hex('#FFD700')
+                color: hex('#FFFFFF')
         Label:
             size_hint_x: 0.2
         Btn:
             id: btn_admin
             size_hint_x: 0.15
             text: "Administrador"
-            color: hex('#FF0000')
+            color: hex('#FFFFFF')
             on_release: root.admin()
         Btn:
             id: btn_sair
             size_hint_x: 0.15
             text: "Sair"
-            color: hex('#FF0000')
+            color: hex('#FFFFFF')
             on_release: root.sair()
 
+    #Conteúdo
     BoxLayout:
-        orientation: 'vertical'
         canvas.before:
             Color:
-                rgba: hex('#FF0000')
+                rgba: hex('#FA8072')
             Rectangle:
                 size:self.size
                 pos:self.pos            
-        size_hint_y: 0.9
-        Label:
-            text: "Box 2"
+        size_hint_y: 0.85
+
+        BoxLayout:
+            size_hint_x: 0.75
+
+            BoxLayout:
+                size_hint_y: 0.8
+                orientation: 'vertical'
+
+            BoxLayout:
+                size_hint_y: 0.1
+                spacing: 0.5
+
+                Btn:
+                    text: 'Deletar'
+
+                Btn:
+                    text: 'Atualizar Qtd'
+
+        BoxLayout:
+            size_hint_x: 0.3
+            canvas.before:
+                Color:
+                    rgba: hex('#FFFFAA')
+                Rectangle:
+                    size:self.size
+                    pos:self.pos
+
+    #Rodapé        
     BoxLayout:
-        size_hint_y: 0.05
-        Label:
-            text: "Box 3"
+        size_hint_y: 0.03
