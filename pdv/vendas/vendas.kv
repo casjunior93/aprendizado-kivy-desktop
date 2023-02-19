@@ -1,22 +1,59 @@
 #:import hex kivy.utils.get_color_from_hex
 
+<SelectableLabel>:
+    # Draw a background to indicate selection
+    canvas.before:
+        Color:
+            rgba: (.0, 0.9, .1, .3) if self.selected else (0, 0, 0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+<RV>:
+    viewclass: 'SelectableLabel'
+    SelectableRecycleBoxLayout:
+        default_size: None, dp(30)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        multiselect: False
+        touch_multiselect: False
+
 <Btn@Button>:
     background_color_normal: ''
-    background_color: hex("#000000")
+    background_color: hex("#393939")
+
+<Btn_verde@Button>:
+    background_color_normal: ''
+    background_color: hex("#009900")
+
+<Btn_vermelho@Button>:
+    background_color_normal: ''
+    background_color: hex("#FF0000")
+
+<Label_azul@Label>:
+    canvas.before:
+        Color:
+            rgba: hex('#0080FF')
+        Rectangle:
+            size:self.size
+            pos:self.pos
 
 <VendasWindow>:
-    orientation: 'vertical'
     canvas.before:
         Color:
             rgba: hex('#BA55D3')
         Rectangle:
             size:self.size
-            pos:self.pos    
+            pos:self.pos
+
+    
+    orientation: 'vertical' 
     
     #Menu
     BoxLayout:
         size_hint_y: 0.1
-        spacing: '.5'
+        spacing: 0
 
         Label:
             id: lbl_bemvindo
@@ -40,15 +77,17 @@
             Label:
                 id: lbl_hora
                 color: hex('#FFFFFF')
+        
         Label:
             size_hint_x: 0.2
+            
         Btn:
             id: btn_admin
             size_hint_x: 0.15
             text: "Administrador"
             color: hex('#FFFFFF')
             on_release: root.admin()
-        Btn:
+        Btn_vermelho:
             id: btn_sair
             size_hint_x: 0.15
             text: "Sair"
@@ -67,29 +106,135 @@
 
         BoxLayout:
             size_hint_x: 0.75
+            orientation: 'vertical'
+            spacing: .5
+
+            GridLayout:
+                spacing: .5
+                size_hint_y: .1
+                rows: 2
+                cols: 2
+
+                Label_azul:
+                    text: 'Pesquisar por código'
+
+                Label_azul:
+                    text: 'Pesquisar por nome'
+
+                TextInput:
+                    id: pesquisar_codigo
+                    multiline: False
+                    on_text_validate: root.pesquisar_codigo_produto(self.text)
+
+                TextInput:
+                    id: pesquisar_nome
+                    multiline: False
+                    on_text_validate: root.pesquisar_nome_produto(self.text)
 
             BoxLayout:
                 size_hint_y: 0.8
                 orientation: 'vertical'
 
+                BoxLayout:
+                    size_hint_y: 0.05
+                    spacing: 0.5
+
+                    Label_azul:
+                        text: 'Código'
+                        size_hint_x: 0.1
+
+                    Label_azul:
+                        text: 'Produto'
+                        size_hint_x: 0.5
+                    
+                    Label_azul:
+                        text: 'Qtde'
+                        size_hint_x: 0.1
+
+                    Label_azul:
+                        text: 'Preço Un.'
+                        size_hint_x: 0.15
+
+                    Label_azul:
+                        text: 'Preço'
+                        size_hint_x: 0.1
+
+                RV:
+                    id: rvs
+
+                
+
             BoxLayout:
                 size_hint_y: 0.1
                 spacing: 0.5
 
-                Btn:
+                Btn_vermelho:
                     text: 'Deletar'
+                    on_release: root.deletar()
 
-                Btn:
+                Btn_verde:
                     text: 'Atualizar Qtd'
+                    on_release: root.atualizar()
 
         BoxLayout:
             size_hint_x: 0.3
+            orientation: 'vertical'
             canvas.before:
                 Color:
-                    rgba: hex('#FFFFAA')
+                    rgba: hex('#FFFFCC')
                 Rectangle:
                     size:self.size
                     pos:self.pos
+
+            GridLayout:
+                size_hint_y: 0.4
+                rows: 2
+                cols: 2
+                canvas.before:
+                    Color:
+                        rgba: hex('#99FFAA')
+                    Rectangle:
+                        size:self.size
+                        pos:self.pos
+                
+                Label_azul:
+                    text: 'Subtotal'
+
+                Label_azul:
+                    id: sub_total
+                    text: '0.00'
+
+                Label_azul:
+                    text: 'Total'
+
+                Label_azul:
+                    id: total
+                    text: '0.00'
+
+            BoxLayout:
+                size_hint_y: 0.6
+                orientation: 'vertical'
+
+                Label_azul:
+                    id: notificacao_falha
+                    size_hint_y: 0.25
+
+                Label_azul:
+                    id: notificacao_sucesso
+                    size_hint_y: 0.25
+
+                Btn_verde:
+                    id: pagar
+                    text: 'Pagar'
+                    on_release: root.pagar()
+                    size_hint_y: 0.25
+                        
+                Btn_verde:
+                    id: compra
+                    text: 'Nova compra'
+                    on_release: root.nova_compra()
+                    size_hint_y: 0.25
+
 
     #Rodapé        
     BoxLayout:
