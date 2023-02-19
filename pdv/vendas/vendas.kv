@@ -1,5 +1,9 @@
 #:import hex kivy.utils.get_color_from_hex
 
+<Btn@Button>:
+    background_color_normal: ''
+    background_color: hex("#FFFF00")
+
 <VendasWindow>:
     orientation: 'vertical'
     canvas.before:
@@ -36,13 +40,13 @@
                 color: hex('#FFD700')
         Label:
             size_hint_x: 0.2
-        Button:
+        Btn:
             id: btn_admin
             size_hint_x: 0.15
             text: "Administrador"
-            color: hex('#FFD700')
+            color: hex('#FF0000')
             on_release: root.admin()
-        Button:
+        Btn:
             id: btn_sair
             size_hint_x: 0.15
             text: "Sair"
