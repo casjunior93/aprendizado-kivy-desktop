@@ -50,9 +50,74 @@
     	size_hint_x: .15
     	color: (0,0,0,1)
 
+<SelectableBoxLayout_Popup>:
+    # Draw a background to indicate selection
+    canvas.before:
+        Color:
+            rgba: hex('#C9F3EF') if self.selected else hex('#F0F0F0')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+    	id: _codigo
+    	size_hint_x: .5
+    	color: (0,0,0,1)
+    Label:
+    	id: _artigo_produto
+    	size_hint_x: .5
+    	color: (0,0,0,1)
+    Label:
+    	id: _quantidade
+    	size_hint_x: .1
+    	color: (0,0,0,1)
+    Label:
+    	id: _preco
+    	size_hint_x: .15
+    	color: (0,0,0,1)
+
+
+<Produto_Nome_Popup>:
+	size_hint: .5, .55 #altura, largura
+	title: 'Nome do produto'
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			size_hint_y: .8
+			orientation: 'vertical'
+
+			BoxLayout:
+				size_hint_y: .1
+
+				Label_azul:
+					text: 'Cod'
+					size_hint_x: .25
+				Label_azul:
+					text: 'Produto'
+					size_hint_x: .5
+				Label_azul:
+					text: 'Qtde'
+					size_hint_x: .1
+				Label_azul:
+					text: 'Preco'
+					size_hint_x: .15
+
+			RV:				
+    			viewclass: 'SelectableBoxLayout_Popup'
+				id: rvs
+		
+		BoxLayout:
+			size_hint_y: .2
+			
+			Btn_verde:
+				text:"Selecionar"
+
+			Btn_vermelho:
+				text:"Sair"
+				on_release: root.dismiss()
+
+
 
 <RV>:
-    viewclass: 'SelectableBoxLayout'
     SelectableRecycleBoxLayout:
         default_size: None, dp(36)
         default_size_hint: 1, None
@@ -158,7 +223,8 @@
 					Label_azul:
 						text: 'Preco'
 						size_hint_x: .15
-				RV:
+				RV:					
+    				viewclass: 'SelectableBoxLayout'
 					id: rvs
 			BoxLayout:
 				size_hint_y: .1
