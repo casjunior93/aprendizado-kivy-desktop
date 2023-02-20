@@ -54,9 +54,9 @@ class SelectableBoxLayout(RecycleDataViewBehavior, BoxLayout):
         ''' Respond to the selection of items in the view. '''
         self.selected = is_selected
         if is_selected:
-            print("selection changed to {0} y {1}".format(rv.data[index], 22))
+            rv.data[index]['selecionado'] = True
         else:
-            print("selection removed for {0}".format(rv.data[index]))
+            rv.data[index]['selecionado'] = False
 
 
 class SelectableBoxLayout_Popup(RecycleDataViewBehavior, BoxLayout):
@@ -86,9 +86,9 @@ class SelectableBoxLayout_Popup(RecycleDataViewBehavior, BoxLayout):
         ''' Respond to the selection of items in the view. '''
         self.selected = is_selected
         if is_selected:
-            print("selection changed to {0} y {1}".format(rv.data[index], 22))
+            rv.data[index]['selecionado'] = True
         else:
-            print("selection removed for {0}".format(rv.data[index]))
+            rv.data[index]['selecionado'] = False
 
 
 class Produto_Nome_Popup(Popup):
